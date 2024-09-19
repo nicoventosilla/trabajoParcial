@@ -16,7 +16,6 @@ void mensajeBienvenida()
     cin.get();
 }
 
-
 int lanzarDado()
 {
     return rand() % 6 + 1;
@@ -91,56 +90,99 @@ int jugarRonda()
 
 int main()
 {
-    // Mostrar mensaje de bienvenida
-    mensajeBienvenida();
+    int rondas = 0;
+    int puntaje_jugador;
+    int puntaje_computadora;
+    int rondas_ganadas_jugador = 0, rondas_ganadas_computadora = 0;
+
 
     // Inicializar la semilla para generar números aleatorios
     srand(time(0));
 
-    int puntaje_jugador, puntaje_maximo_jugador = 0;
-    int puntaje_computadora, puntaje_maximo_computadora = 0;
+    // Mostrar mensaje de bienvenida
+    mensajeBienvenida();
 
-    for (int i = 1; i <= 10; i++)
+    do
+    {
+        cout << "Cuantas rondas quieres jugar?" << endl;
+        cin >> rondas;
+
+        if (rondas <= 0)
+        {
+            cout << "El número de rondas debe ser mayor a 0" << endl;
+        }
+    }
+    while (rondas <= 0);
+
+    // Jugar las rondas
+    for (int i = 1; i <= rondas; i++)
     {
         cout << "---------------------------------" << endl;
         cout << "          Ronda " << i << endl;
         cout << "---------------------------------" << endl;
 
         // Jugar ronda jugador
-        cout << "* Turno del jugador" << endl;
+        cout << "ES TU TURNO!" << endl;
         cout << "Presiona Enter para lanzar los dados...";
         cin.get();
         puntaje_jugador = jugarRonda();
-        puntaje_maximo_jugador += puntaje_jugador;
-
-        cout << "El puntaje del jugador es: " << puntaje_jugador << endl;
+        cout << "Tu puntaje es: " << puntaje_jugador << endl;
 
         // Jugar ronda computadora
-        cout << endl;
-        cout << "* Turno de la computadora" << endl;
+        cout << "TURNO DE LA COMPUTADORA!" << endl;
         puntaje_computadora = jugarRonda();
-        puntaje_maximo_computadora += puntaje_computadora;
-
         cout << "El puntaje de la computadora es: " << puntaje_computadora << endl;
-        cout << endl;
 
+        // Determinar ganador de la ronda
+        if (puntaje_jugador > puntaje_computadora)
+        {
+            cout << "Felicidades, ganaste la ronda!" << endl;
+            rondas_ganadas_jugador++;
+        }
+        else if (puntaje_computadora > puntaje_jugador)
+        {
+            cout << "Perdiste la ronda!" << endl;
+            rondas_ganadas_computadora++;
+        }
+        else
+        {
+            cout << "¡Empate!" << endl;
+        }
+
+        // Mostrar marcador
+        cout << "Marcador:" << endl;
+        cout << "Jugador: " << rondas_ganadas_jugador << " Computadora: " << rondas_ganadas_computadora << endl;
+
+        // Pausa para continuar
+        cout << "Presiona Enter para continuar...";
         cin.get();
+
+        // Verificar si hay una ventaja insuperable
+        if (rondas_ganadas_jugador > rondas / 2 || rondas_ganadas_computadora > rondas / 2)
+        {
+            break;
+        }
     }
 
-    cout << "Puntaje maximo jugador: " << puntaje_maximo_jugador << endl;
-    cout << "Puntaje maximo computadora: " << puntaje_maximo_computadora << endl;
+    // Determinar el ganador final
+    cout << "---------------------------------" << endl;
+    cout << "          Resultado Final        " << endl;
+    cout << "---------------------------------" << endl;
 
-    if (puntaje_maximo_jugador > puntaje_maximo_computadora)
+    cout << "Marcador Final:" << endl;
+    cout << "Jugador: " << rondas_ganadas_jugador << " Computadora: " << rondas_ganadas_computadora << endl;
+
+    if (rondas_ganadas_jugador > rondas_ganadas_computadora)
     {
-        cout << "Felicidades! Has ganado!" << endl;
+        cout << "Felicidades, ganaste el juego!" << endl;
     }
-    else if (puntaje_maximo_jugador < puntaje_maximo_computadora)
+    else if (rondas_ganadas_computadora > rondas_ganadas_jugador)
     {
-        cout << "Lo siento! Has perdido!" << endl;
+        cout << "¡Perdiste el juego!" << endl;
     }
     else
     {
-        cout << "Empate!" << endl;
+        cout << "El juego termino en empate!" << endl;
     }
 
     return 0;
