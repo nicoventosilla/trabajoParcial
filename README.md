@@ -1,7 +1,6 @@
 # 🎲 CDice: Juego de Dados en C++
 
-Este es un sencillo juego de dados hecho en C++ llamado **CDice**. En este juego, el objetivo es vencer a la computadora
-obteniendo el mayor producto de los valores de tres dados en cada ronda.
+Este es un sencillo juego de dados hecho en C++ llamado **CDice**. En este juego, el objetivo es vencer a la computadora obteniendo el mayor producto de los valores de tres dados en cada ronda.
 
 ## 🚀 ¿Cómo funciona el juego?
 
@@ -42,16 +41,24 @@ obteniendo el mayor producto de los valores de tres dados en cada ronda.
     ./cdice
     ```
 
+
 ## 🛠 Tecnologías usadas
 
 - **C++**: Lenguaje de programación para construir el juego.
 - **rand() y srand()**: Para generar números aleatorios en los dados.
 - **ctime**: Para inicializar la semilla de los números aleatorios.
 
+## 📚 Documentación adicional
+
+Para una mejor comprensión del código, consulta los siguientes archivos:
+
+- **[explicacion-codigo.md](explicacion-codigo.md)**: Una explicación detallada del código del juego.
+- **[explicacion-buffer.md](explicacion-buffer.md)**: Información sobre el uso de buffers en la entrada y salida.
+- **[explicacion-do-while.md](explicacion-do-while.md)**: Un análisis del uso del bucle `do-while` en el programa.
+
 ## 🙌 Cómo contribuir
 
-¡Las contribuciones son bienvenidas! Si deseas mejorar el código, corregir errores o agregar nuevas características,
-sigue estos pasos:
+¡Las contribuciones son bienvenidas! Si deseas mejorar el código, corregir errores o agregar nuevas características, sigue estos pasos:
 
 1. **Fork** este repositorio.
 2. Crea una nueva rama (`git checkout -b feature-nueva-caracteristica`).

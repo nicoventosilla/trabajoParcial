@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>  // Para usar rand() y srand()
-#include <ctime>   // Para usar time()
+#include <ctime>  // Para usar time()
+#include <limits>  // Para usar numeric_limits
 using namespace std;
 
 void mensajeBienvenida()
@@ -99,17 +100,23 @@ int main()
     // Solicitar el número de rondas
     do
     {
-        cout << endl << "CUANTAS RONDAS QUIERES JUGAR?" << endl;
+        cout << endl << "CUANTAS RONDAS QUIERES JUGAR? (1-10)" << endl;
         cin >> rondas;
 
-        if (rondas <= 0)
+        if (cin.fail())
         {
-            cout << endl << "el numero de rondas debe ser mayor a cero" << endl;
+            cout << "Por favor, ingresa un numero valido." << endl;
+            cin.clear(); // Limpiar el estado de error
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada
+        }
+        else if (rondas <= 0 || rondas > 10)
+        {
+            cout << "El numero de rondas debe ser un valor entre 1 y 10." << endl;
         }
     }
-    while (rondas <= 0);
+    while (rondas <= 0 || rondas > 10);
 
-    cin.ignore(); // Limpiar el buffer de entrada
+    cin.get(); // Limpiar el buffer de entrada
 
     // Jugar las rondas
     for (int i = 1; i <= rondas; i++)
@@ -152,6 +159,19 @@ int main()
         // Mostrar marcador
         cout << endl << "MARCADOR:" << endl;
         cout << "JUGADOR: " << rondas_ganadas_jugador << " COMPUTADORA: " << rondas_ganadas_computadora << endl;
+
+        // Revisar si ya se puede terminar el juego
+        if (rondas_ganadas_jugador > rondas_ganadas_computadora + (rondas - i))
+        {
+            cout << endl << "FELICIDADES! Ya ganaste el juego, la computadora no puede alcanzarte." << endl;
+            break;
+        }
+
+        if (rondas_ganadas_computadora > rondas_ganadas_jugador + (rondas - i))
+        {
+            cout << endl << "Lo siento! La computadora ya ha ganado, no puedes alcanzarla." << endl;
+            break;
+        }
 
         // Pausa para continuar
         cout << endl << "Presiona Enter para continuar...";
