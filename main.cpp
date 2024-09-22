@@ -6,14 +6,14 @@ using namespace std;
 void mensajeBienvenida()
 {
     cout << "*************************************" << endl;
-    cout << "*   ¡Bienvenido al juego CDice!     *" << endl;
-    cout << "*  Tira los dados y vence a la PC   *" << endl;
-    cout << "*    El que consiga el mayor        *" << endl;
-    cout << "*   producto con los dados gana!    *" << endl;
+    cout << "*    BIENVENIDO AL JUEGO CDICE!     *" << endl;
+    cout << "*  TIRA LOS DADOS Y VENCE A LA PC   *" << endl;
+    cout << "*                                   *" << endl;
+    cout << "*    EL QUE CONSIGA EL MAYOR        *" << endl;
+    cout << "*   PRODUCTO CON LOS DADOS GANA!    *" << endl;
     cout << "*************************************" << endl;
     cout << "Presiona Enter para continuar...";
-    cout << endl;
-    cin.get();
+    cin.get(); // Esperar a que el usuario presione Enter
 }
 
 int lanzarDado()
@@ -70,31 +70,25 @@ void mostrarDado(int valor)
     }
 }
 
-
 int jugarRonda()
 {
     int dado1 = lanzarDado();
     int dado2 = lanzarDado();
     int dado3 = lanzarDado();
 
-    cout << "Resultado de los dados:" << endl;
+    cout << endl << "RESULTADO DE LOS DADOS:" << endl;
     mostrarDado(dado1);
     mostrarDado(dado2);
     mostrarDado(dado3);
 
-    int producto = dado1 * dado2 * dado3;
-
-    return producto;
+    return dado1 * dado2 * dado3;
 }
-
 
 int main()
 {
     int rondas = 0;
-    int puntaje_jugador;
-    int puntaje_computadora;
+    int puntaje_jugador, puntaje_computadora;
     int rondas_ganadas_jugador = 0, rondas_ganadas_computadora = 0;
-
 
     // Inicializar la semilla para generar números aleatorios
     srand(time(0));
@@ -102,87 +96,88 @@ int main()
     // Mostrar mensaje de bienvenida
     mensajeBienvenida();
 
+    // Solicitar el número de rondas
     do
     {
-        cout << "Cuantas rondas quieres jugar?" << endl;
+        cout << endl << "CUANTAS RONDAS QUIERES JUGAR?" << endl;
         cin >> rondas;
 
         if (rondas <= 0)
         {
-            cout << "El número de rondas debe ser mayor a 0" << endl;
+            cout << endl << "el numero de rondas debe ser mayor a cero" << endl;
         }
     }
     while (rondas <= 0);
 
+    cin.ignore(); // Limpiar el buffer de entrada
+
     // Jugar las rondas
     for (int i = 1; i <= rondas; i++)
     {
+        cout << endl;
         cout << "---------------------------------" << endl;
-        cout << "          Ronda " << i << endl;
+        cout << "            RONDA " << i << endl;
         cout << "---------------------------------" << endl;
 
         // Jugar ronda jugador
-        cout << "ES TU TURNO!" << endl;
+        cout << endl << "ES TU TURNO!" << endl;
         cout << "Presiona Enter para lanzar los dados...";
-        cin.get();
+        cin.get(); // Esperar a que el usuario presione Enter
         puntaje_jugador = jugarRonda();
-        cout << "Tu puntaje es: " << puntaje_jugador << endl;
+
+        cout << "TU PUNTAJE ES: " << puntaje_jugador << endl;
 
         // Jugar ronda computadora
-        cout << "TURNO DE LA COMPUTADORA!" << endl;
+        cout << endl << "TURNO DE LA COMPUTADORA!" << endl;
         puntaje_computadora = jugarRonda();
-        cout << "El puntaje de la computadora es: " << puntaje_computadora << endl;
+
+        cout << "EL PUNTAJE DE LA COMPUTADORA ES: " << puntaje_computadora << endl;
 
         // Determinar ganador de la ronda
         if (puntaje_jugador > puntaje_computadora)
         {
-            cout << "Felicidades, ganaste la ronda!" << endl;
+            cout << endl << "FELICIDADES, GANASTE LA RONDA!" << endl;
             rondas_ganadas_jugador++;
         }
         else if (puntaje_computadora > puntaje_jugador)
         {
-            cout << "Perdiste la ronda!" << endl;
+            cout << endl << "PERDISTE LA RONDA!" << endl;
             rondas_ganadas_computadora++;
         }
         else
         {
-            cout << "¡Empate!" << endl;
+            cout << endl << "EMPATE!" << endl;
         }
 
         // Mostrar marcador
-        cout << "Marcador:" << endl;
-        cout << "Jugador: " << rondas_ganadas_jugador << " Computadora: " << rondas_ganadas_computadora << endl;
+        cout << endl << "MARCADOR:" << endl;
+        cout << "JUGADOR: " << rondas_ganadas_jugador << " COMPUTADORA: " << rondas_ganadas_computadora << endl;
 
         // Pausa para continuar
-        cout << "Presiona Enter para continuar...";
-        cin.get();
-
-        // Verificar si hay una ventaja insuperable
-        if (rondas_ganadas_jugador > rondas / 2 || rondas_ganadas_computadora > rondas / 2)
-        {
-            break;
-        }
+        cout << endl << "Presiona Enter para continuar...";
+        cin.get(); // Esperar a que el usuario presione Enter
     }
 
     // Determinar el ganador final
+    cout << endl;
     cout << "---------------------------------" << endl;
-    cout << "          Resultado Final        " << endl;
+    cout << "          RESULTADO FINAL        " << endl;
     cout << "---------------------------------" << endl;
 
-    cout << "Marcador Final:" << endl;
-    cout << "Jugador: " << rondas_ganadas_jugador << " Computadora: " << rondas_ganadas_computadora << endl;
+    cout << "MARCADOR FINAL:" << endl;
+    cout << "JUGADOR: " << rondas_ganadas_jugador << " COMPUTADORA: " << rondas_ganadas_computadora << endl;
 
     if (rondas_ganadas_jugador > rondas_ganadas_computadora)
     {
-        cout << "Felicidades, ganaste el juego!" << endl;
+        cout << endl << "FELICIDADES, GANASTE EL JUEGO!" << endl;
     }
     else if (rondas_ganadas_computadora > rondas_ganadas_jugador)
     {
-        cout << "¡Perdiste el juego!" << endl;
+        cout << endl << "PERDISTE EL JUEGO!" << endl;
     }
     else
     {
-        cout << "El juego termino en empate!" << endl;
+        cout << endl << "EL JUEGO TERMINÓ EN EMPATE!" << endl;
     }
 
     return 0;
