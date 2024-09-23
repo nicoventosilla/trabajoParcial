@@ -115,13 +115,11 @@ int jugarRonda()
 
 ---
 
-### 🎮 6**. Función Principal: main()**
+### 🎮 6. Función Principal: main()
 
 Ahora entramos a la función principal, donde ocurre la mayor parte del juego:
 
 ```cpp
-cpp
-Copy code
 int main()
 {
     int rondas = 0;
@@ -139,7 +137,7 @@ int main()
 - **Variables**: Se declaran las variables para llevar el conteo de rondas y puntajes.
 - **`srand(time(0))`**: Inicializa la generación de números aleatorios.
 
-### 🎮 7**. Pedir el Número de Rondas: Ciclo do-while**
+### 🎮 7. Pedir el Número de Rondas: Ciclo do-while
 
 Antes de empezar a jugar, le preguntamos al jugador cuántas rondas quiere jugar. Esto se hace con un bucle `do-while`:
 
@@ -170,7 +168,7 @@ while (rondas <= 0 || rondas > 10);
 
 ---
 
-### 🕹 8**. Jugar Múltiples Rondas: Ciclo for**
+### 🕹 8. Jugar Múltiples Rondas: Ciclo for
 
 Ahora entramos en el corazón del juego. Aquí jugamos varias rondas utilizando un bucle `for`:
 
@@ -202,7 +200,7 @@ for (int i = 1; i <= rondas; i++)
 
 ---
 
-### 🎲 9**. Comparar Resultados y Actualizar Marcador**
+### 🎲 9. Comparar Resultados y Actualizar Marcador
 
 En cada ronda, comparamos los puntajes del jugador y la computadora para ver quién ganó esa ronda:
 
@@ -257,7 +255,7 @@ if (rondas_ganadas_computadora > rondas_ganadas_jugador + (rondas - i))
 
 ---
 
-### 🎉 11**. Mostrar el Ganador Final**
+### 🎉 11. Mostrar el Ganador Final
 
 Al final del juego, después de todas las rondas, comparamos cuántas ganó el jugador y cuántas ganó la computadora:
 
