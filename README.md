@@ -55,6 +55,7 @@ Para una mejor comprensión del código, consulta los siguientes archivos:
 - **[explicacion-codigo.md](explicacion-codigo.md)**: Una explicación detallada del código del juego.
 - **[explicacion-buffer.md](explicacion-buffer.md)**: Información sobre el uso de buffers en la entrada y salida.
 - **[explicacion-do-while.md](explicacion-do-while.md)**: Un análisis del uso del bucle `do-while` en el programa.
+- **[explicacion-codigo-nuevo.md](./explicacion-codigo-nuevo.md).**: Una descripción de cada parte importante y nueva del código, incluyendo el uso de librerías, manejo de entradas y salidas, y generación de números aleatorios.
 
 ## 🙌 Cómo contribuir
 
