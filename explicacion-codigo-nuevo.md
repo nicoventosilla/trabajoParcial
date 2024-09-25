@@ -1,41 +1,95 @@
 ### 1. `#include <iostream>`
 
-Esta línea nos permite usar funciones como `cout` y `cin` para mostrar cosas en la pantalla (con `cout`) y recibir entradas del usuario (con `cin`). Básicamente, es lo que necesitamos para interactuar con el usuario.
+Esta línea incluye la librería que nos permite usar `cout` y `cin` para mostrar información en pantalla (`cout`) y recibir entradas del usuario (`cin`). Es esencial para la interacción con el usuario en cualquier programa.
 
-### 2. `#include <cstdlib>`
+---
 
-Esta librería incluye funciones como `rand()` y `srand()`, que sirven para generar números aleatorios. Por ejemplo, en tu juego, los dados deben generar números al azar, por eso usamos esta librería.
+### 2. `#include <cmath>`
 
-### 3. `#include <ctime>`
+Esta librería es útil cuando trabajamos con funciones matemáticas, como **`floor()`**, que redondea un número decimal hacia abajo. Nos aseguramos de que el usuario solo ingrese números enteros en el juego.
 
-Con esta librería podemos usar `time()`. Esto es importante cuando trabajamos con números aleatorios porque, si no la usamos, el programa puede generar los mismos números cada vez que lo ejecutamos. Usando `srand(time(0))`, le damos al programa un punto de partida diferente cada vez (el tiempo actual), para que los números sean realmente al azar.
+---
 
-### 4. `#include <limits>`
+### 3. `#include <cstdlib>`
 
-Nos permite usar `numeric_limits`, que es una herramienta útil para manejar límites de tipos de datos. En tu código se usa para limpiar el "**buffer**" (más sobre esto en un momento).
+Nos permite usar funciones para generar números aleatorios, como **`rand()`** y **`srand()`**. Estas funciones son clave para hacer que los "dados" en el juego generen números al azar.
 
-### 5. `cin.clear();`
+- **`rand()`**: Genera un número aleatorio.
+- **`srand()`**: Inicializa la semilla para que los números generados por `rand()` sean diferentes cada vez que ejecutamos el programa.
 
-Cuando usas `cin` para recibir datos del usuario, a veces pueden ocurrir errores. Por ejemplo, si el usuario ingresa letras en lugar de un número, cin entra en un estado de error y deja de funcionar bien.
+---
 
-La función `cin.clear()` limpia ese estado de error, para que cin pueda volver a recibir entradas correctamente después de un problema.
+### 4. `#include <ctime>`
 
-### 6. `cin.ignore(numeric_limits<streamsize>::max(), '\n');`
+Esta librería permite usar **`time(0)`**, que da el tiempo actual en segundos. Se usa con **`srand()`** para generar diferentes números aleatorios en cada partida. Si no la usamos, el programa podría generar los mismos números una y otra vez.
 
-Después de limpiar el estado de error con `cin.clear()`, puede que haya información no deseada en el "**buffer**" de entrada (por ejemplo, si el usuario ingresó texto cuando debería haber puesto un número). El "**buffer**" es un espacio temporal donde se guarda lo que escribimos antes de que el programa lo lea.
+---
 
-- La función `cin.ignore()` descarta lo que esté en ese "**buffer**", ignorando cualquier cosa que no necesitamos.
-- `numeric_limits<streamsize>::max()`: Esto le dice al programa que ignore hasta un límite muy grande (todo lo que haya en el "buffer").
-- `'\n'`: Significa que el programa debe detenerse de ignorar cuando encuentra un salto de línea (cuando el usuario presiona "Enter").
+### 5. `#include <limits>`
 
-### `cin.get();`
+Nos permite trabajar con **`numeric_limits`**, que se utiliza para limpiar el "buffer" de entrada. Esto es importante cuando el usuario ingresa un valor incorrecto.
 
-La función `cin.get()` espera a que el usuario presione la tecla "Enter". Esto se utiliza para pausar el programa, generalmente antes de continuar con la siguiente acción. Es útil cuando queremos que el usuario lea algo antes de que el programa avance.
+---
 
-### Resumen:
+### 6. `rand()`
 
-`cin.clear();`: Limpia cualquier error que haya ocurrido con `cin`.
+Genera números aleatorios. En el juego, lo usamos para simular el lanzamiento de dados. Cada vez que se llama a `rand()`, el programa devuelve un número diferente.
 
-`cin.ignore(...)`: Elimina lo que haya en el buffer de entrada para evitar problemas.
+---
 
-`cin.get();`: Pausa el programa hasta que el usuario presione "Enter".
+### 7. `srand(time(0))`
+
+Esta línea inicializa el generador de números aleatorios con una "semilla" basada en el tiempo actual. Al usar **`time(0)`**, cada vez que el juego se ejecuta, los resultados de los dados son diferentes. Sin `srand(time(0))`, `rand()` podría generar la misma secuencia de números en cada ejecución.
+
+---
+
+### 8. `cin.clear();`
+
+Cuando el usuario ingresa un valor incorrecto, como letras en lugar de números, `cin` entra en un estado de error. **`cin.clear();`** elimina ese estado de error, permitiendo que el programa vuelva a aceptar entradas del usuario.
+
+---
+
+### 9. `cin.ignore(numeric_limits<streamsize>::max(), '\n');`
+
+Después de usar **`cin.clear();`**, puede que todavía queden datos incorrectos en el "buffer" de entrada (como caracteres no válidos). Esta línea se encarga de limpiar ese "buffer":
+
+- **`numeric_limits<streamsize>::max()`**: Le dice al programa que ignore todo lo que hay en el "buffer".
+- **`'\n'`**: Le indica al programa que debe dejar de ignorar cuando encuentre un salto de línea (cuando el usuario presiona "Enter").
+
+---
+
+### 10. `cin.get();`
+
+Esta función hace que el programa espere hasta que el usuario presione la tecla "Enter". Se usa para pausar el programa, generalmente para permitir que el usuario lea un mensaje antes de que el programa continúe.
+
+---
+
+### 11. `floor(input)`
+
+Esta función, que proviene de la librería `<cmath>`, redondea un número decimal hacia abajo. En tu código, se usa para asegurarse de que el usuario solo ingrese números enteros. Si el número tiene decimales, **`floor(input)`** los elimina.
+
+**Ejemplo**:
+
+- Si el usuario ingresa **3.8**, **`floor(3.8)`** será **3**.
+
+---
+
+### 12. `static_cast<int>(input)`
+
+Una vez que estamos seguros de que el número ingresado es válido (gracias a `floor()`), lo convertimos en un entero usando **`static_cast<int>(input)`**. Esto garantiza que, incluso si el usuario ingresó algo como **4.0**, lo tratamos como **4** (un entero).
+
+---
+
+### Resumen Completo
+
+En el juego de dados, interactuamos con el usuario y generamos números aleatorios para los lanzamientos de dados. Aquí están los pasos clave:
+
+1. **Interacción con el Usuario**:
+    - Usamos `cin` para recibir datos del usuario y `cout` para mostrar información en pantalla.
+    - Si el usuario comete un error, limpiamos el estado de `cin` con `cin.clear()` y limpiamos el buffer con `cin.ignore()`.
+2. **Generar Números Aleatorios**:
+    - Usamos `rand()` para generar los valores de los dados y `srand(time(0))` para asegurarnos de que los números sean diferentes en cada partida.
+3. **Validar Entrada del Usuario**:
+    - Usamos `floor()` para verificar si el número ingresado es un entero y, si es válido, lo convertimos en un entero con `static_cast<int>()`.
+4. **Control del Flujo**:
+    - Pausamos el programa con `cin.get()` cuando necesitamos que el jugador lea un mensaje antes de continuar.
