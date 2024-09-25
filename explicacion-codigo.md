@@ -3,7 +3,7 @@
 Al principio del código, tenemos esto:
 
 ```cpp
-#include <iostream>
+#include <iostream>  // Para usar cout y cin
 #include <cmath>    // Para usar floor()
 #include <cstdlib>  // Para usar rand() y srand()
 #include <ctime>    // Para usar time()
