@@ -137,34 +137,45 @@ int main()
 - **Variables**: Se declaran las variables para llevar el conteo de rondas y puntajes.
 - **`srand(time(0))`**: Inicializa la generación de números aleatorios.
 
+---
+
 ### 🎮 7. Pedir el Número de Rondas: Ciclo do-while
 
-Antes de empezar a jugar, le preguntamos al jugador cuántas rondas quiere jugar. Esto se hace con un bucle `do-while`:
+Antes de comenzar el juego, pedimos al jugador que indique cuántas rondas quiere jugar. Usamos un ciclo **do-while** para asegurarnos de que el número ingresado sea correcto:
 
 ```cpp
 do
 {
     cout << endl << "CUANTAS RONDAS QUIERES JUGAR? (1-10)" << endl;
-    cin >> rondas;
+    cin >> input;
 
-    if (cin.fail())
+    if (cin.fail()) // Si el usuario ingresa algo inválido
     {
         cout << "Por favor, ingresa un numero valido." << endl;
-        cin.clear(); // Limpiar el estado de error
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada
+        cin.clear(); // Limpia el error de la entrada
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpia el buffer de entrada
     }
-    else if (rondas <= 0 || rondas > 10)
+    else if (input != floor(input) || input <= 0 || input > 10) // Si el número es decimal o está fuera de rango
     {
-        cout << "El numero de rondas debe ser un valor entre 1 y 10." << endl;
+        cout << "El numero debe ser un entero entre 1 y 10." << endl;
+    }
+    else
+    {
+        rondas = static_cast<int>(input); // Convierte el número a un entero
     }
 }
-while (rondas <= 0 || rondas > 10);
+while (rondas <= 0 || rondas > 10); // Repite hasta que el valor sea válido
 ```
 
-- **`do-while`**: Este ciclo asegura que se solicite un número de rondas válido entre 1 y 10.
-- **`cin.fail()`**: Verifica si el usuario ingresó algo que no es un número. Si es así, limpiamos el estado de error y el buffer de entrada para volver a solicitar el número.
+### ✍️ **Explicación Detallada**:
 
-**👉 Analogía:** Es como si le preguntas a un amigo cuántas veces quiere jugar y él dice "cinco", pero tú le dices que "no, tiene que ser un número entre 1 y 10". 😄
+- **do-while**: Este ciclo **garantiza** que el jugador siga introduciendo el número de rondas hasta que ingrese un valor válido. El bloque dentro del ciclo siempre se ejecuta al menos una vez.
+- **cin.fail()**: Esta función revisa si el jugador ingresó algo inválido, como letras o símbolos en lugar de un número. Si esto ocurre, mostramos un mensaje de error, limpiamos el estado del **cin** y eliminamos lo que quedó en el buffer de entrada (es como limpiar la memoria para aceptar la siguiente entrada correctamente).
+- **input != floor(input)**: Esta línea verifica si el número ingresado es decimal. **`floor(input)`** toma la parte entera del número. Si **input** y **floor(input)** no son iguales, significa que el jugador ingresó un número decimal, lo cual no es válido.
+- **input <= 0 || input > 10**: Se asegura de que el número ingresado esté entre 1 y 10. Si el jugador ingresa algo fuera de este rango, el programa le pedirá que lo vuelva a intentar.
+- **static_cast<int>(input)**: Esto convierte el número a un entero, asegurándose de que el valor almacenado en **rondas** sea siempre un número entero (por si el jugador intenta algo como 5.0).
+
+### 👉 **Analogía**: Imagina que le preguntas a tu amigo cuántas veces quiere lanzar los dados, pero él responde con "2.5 veces". Entonces, le recuerdas que solo puedes jugar entre 1 y 10 rondas, y que el número tiene que ser un entero, ¡sin decimales! 😄
 
 ---
 
