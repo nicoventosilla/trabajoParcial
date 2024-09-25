@@ -1,21 +1,46 @@
-### 🎮 **1. Incluyendo las Librerías**
+### 🎮 1. Incluyendo las Librerías
 
 Al principio del código, tenemos esto:
 
 ```cpp
 #include <iostream>
+#include <cmath>    // Para usar floor()
 #include <cstdlib>  // Para usar rand() y srand()
 #include <ctime>    // Para usar time()
-#include <limits>   // Para usar numeric_limits
-using namespace std;
+#include <limits>   // Para usar numeric_limitsusing namespace std;
 ```
 
-- **`#include <iostream>`**: Nos permite usar `cout` y `cin`, que son funciones para mostrar y recibir información en la consola.
-- **`#include <cstdlib>`**: Esta librería nos permite usar `rand()` para generar números aleatorios, como los dados en nuestro juego.
-- **`#include <ctime>`**: Nos sirve para inicializar `rand()` con la función `srand(time(0))`, lo que nos asegura que los números aleatorios no se repitan cada vez que ejecutamos el programa.
-- **`#include <limits>`**: Nos permite usar `numeric_limits`, que ayuda a manejar la entrada del usuario y a limpiar el buffer de entrada en caso de errores.
+### 1. **`#include <iostream>` :**
 
-**👉 Ejemplo simple:** Si no usáramos `srand(time(0))`, cada vez que lanzáramos los dados, obtendríamos los mismos números. Esto haría que el juego no fuera muy divertido. 😅
+- **Uso**: Nos permite usar `cout` y `cin`, que son funciones para mostrar información en la consola y recibir entradas del usuario.
+- **Ejemplo**: Con `cout`, podemos imprimir mensajes como "Bienvenido al juego", y con `cin`, podemos preguntar "¿Cuántas rondas quieres jugar?".
+
+### 2. **`#include <cmath>`**
+
+- **Uso**: Esta librería nos permite usar funciones matemáticas como `floor()`, que redondea un número hacia abajo al entero más cercano.
+- **Ejemplo**: Si el usuario ingresa un número decimal como `2.8`, `floor(2.8)` devolvería `2`. Esto es útil para asegurarnos de que solo estamos trabajando con números enteros en el juego.
+
+### 3. **`#include <cstdlib>`**
+
+- **Uso**: Esta librería nos permite usar `rand()` y `srand()`, que son funciones para generar números aleatorios.
+- **Ejemplo**: En nuestro juego, usamos `rand()` para simular el lanzamiento de los dados, y `srand(time(0))` para inicializar la semilla de los números aleatorios, asegurando que los números sean diferentes cada vez que ejecutamos el programa.
+
+### 4. **`#include <ctime>`**
+
+- **Uso**: Esta librería es importante para trabajar con funciones relacionadas con el tiempo, como `time()`, que nos proporciona el tiempo actual.
+- **Ejemplo**: Usamos `srand(time(0))` para que cada vez que corremos el programa, la semilla de los números aleatorios cambie, evitando así que los dados den los mismos números en cada ejecución.
+
+### 5. **`#include <limits>`**
+
+- **Uso**: Nos permite utilizar `numeric_limits`, que es útil para manejar límites de tipos de datos. Por ejemplo, nos ayuda a limpiar el buffer de entrada en caso de que se produzca un error al ingresar datos.
+- **Ejemplo**: Usamos `numeric_limits<streamsize>::max()` para ignorar cualquier dato en el buffer cuando el usuario ingresa algo incorrecto, asegurando que no haya residuos de entradas anteriores.
+
+### 6. **`using namespace std;`**
+
+- **Uso**: Esta línea nos permite utilizar las funciones del espacio de nombres estándar (`std`) sin tener que escribir `std::` antes de cada función.
+- **Ejemplo**: En lugar de escribir `std::cout` y `std::cin`, simplemente podemos escribir `cout` y `cin`, haciendo el código más limpio y fácil de leer.
+
+👉 **Ejemplo simple**: Si no usáramos `srand(time(0))`, cada vez que lanzáramos los dados, obtendríamos los mismos números. Esto haría que el juego no fuera muy divertido. 😅 Además, al no manejar correctamente el buffer, podríamos permitir que entradas no válidas causen problemas en el programa.
 
 ---
 
