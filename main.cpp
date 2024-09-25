@@ -1,8 +1,9 @@
-#include <iostream>
+#include <iostream> // Para usar cout y cin
+#include <cmath>  // Para usar floor()
 #include <cstdlib>  // Para usar rand() y srand()
 #include <ctime>  // Para usar time()
 #include <limits>  // Para usar numeric_limits
-using namespace std;
+using namespace std; // Para no tener que escribir std:: antes de cada función
 
 void mensajeBienvenida()
 {
@@ -88,6 +89,7 @@ int jugarRonda()
 int main()
 {
     int rondas = 0;
+    double input;
     int puntaje_jugador, puntaje_computadora;
     int rondas_ganadas_jugador = 0, rondas_ganadas_computadora = 0;
 
@@ -101,20 +103,26 @@ int main()
     do
     {
         cout << endl << "CUANTAS RONDAS QUIERES JUGAR? (1-10)" << endl;
-        cin >> rondas;
+        cin >> input;
 
+        // Si ocurre un error con la entrada (por ejemplo, si no es un número)
         if (cin.fail())
         {
             cout << "Por favor, ingresa un numero valido." << endl;
             cin.clear(); // Limpiar el estado de error
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpiar el buffer de entrada
         }
-        else if (rondas <= 0 || rondas > 10)
+        // Validar si el número es decimal o está fuera del rango permitido
+        else if (input != floor(input) || input <= 0 || input > 10)
         {
-            cout << "El numero de rondas debe ser un valor entre 1 y 10." << endl;
+            cout << "El numero debe ser un entero entre 1 y 10." << endl;
+        }
+        else
+        {
+            rondas = static_cast<int>(input); // Convertir a entero si es válido
         }
     }
-    while (rondas <= 0 || rondas > 10);
+    while (rondas <= 0 || rondas > 10); // Repetir hasta que se ingrese un valor válido
 
     cin.get(); // Limpiar el buffer de entrada
 
