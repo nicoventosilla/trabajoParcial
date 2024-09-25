@@ -41,13 +41,6 @@ Este es un sencillo juego de dados hecho en C++ llamado **CDice**. En este juego
     ./cdice
     ```
 
-
-## 🛠 Tecnologías usadas
-
-- **C++**: Lenguaje de programación para construir el juego.
-- **rand() y srand()**: Para generar números aleatorios en los dados.
-- **ctime**: Para inicializar la semilla de los números aleatorios.
-
 ## 📚 Documentación adicional
 
 Para una mejor comprensión del código, consulta los siguientes archivos:
