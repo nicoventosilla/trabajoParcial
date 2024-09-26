@@ -148,6 +148,7 @@ Ahora entramos a la función principal, donde ocurre la mayor parte del juego:
 int main()
 {
     int rondas = 0;
+    double input;
     int puntaje_jugador, puntaje_computadora;
     int rondas_ganadas_jugador = 0, rondas_ganadas_computadora = 0;
 
